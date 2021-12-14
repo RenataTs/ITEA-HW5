@@ -111,6 +111,10 @@ namespace CW5
             {
                 for (var j = 1; j < b; j++)
                 {
+                    if ()
+                    {
+
+                    }
                 }
             }
 
