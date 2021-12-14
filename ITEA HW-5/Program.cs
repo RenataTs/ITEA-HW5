@@ -107,9 +107,9 @@ namespace CW5
         {
             int count = 0;
 
-            for (var i = 0; i < array.GetLength(0); i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (var j = 0; j < array.GetLength(1); j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
                     if (i > 0 && array[i - 1, j] >= array[i, j])
                     {
@@ -140,9 +140,9 @@ namespace CW5
 
         static int[,] Task6(ref int[,] array)
         {
-            for (var i = 0; i < array.GetLength(0); i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (var j = i + 1; j < array.GetLength(1); j++)
+                for (int j = i + 1; j < array.GetLength(1); j++)
                 {
                     Swap(ref array[i, j], ref array[j, i]);
                 }
@@ -157,29 +157,7 @@ namespace CW5
             int b = 3;
             int[,] array = CreateArray(a, b);
 
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    Console.Write("{0}\t", array[i, j]);
-                }
-
-                Console.WriteLine();
-            }
-
-            Console.WriteLine();
-
             Task6(ref array);
-
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    Console.Write("{0}\t", array[i, j]);
-                }
-
-                Console.WriteLine();
-            }
         }
     }
 }
