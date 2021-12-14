@@ -27,13 +27,13 @@ namespace CW5
             b = temp;
         }
 
-        static int Task1(ref int[,] array, int a, int b)
+        static int Task1(ref int[,] array)
         {
             int min = array[0, 0];
 
-            for (int i = 0; i < a; i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < b; j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
                     if (array[i, j] < min)
                     {
@@ -45,13 +45,13 @@ namespace CW5
             return min;
         }
 
-        static int Task2(ref int[,] array, int a, int b)
+        static int Task2(ref int[,] array)
         {
             int max = array[0, 0];
 
-            for (int i = 0; i < a; i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < b; j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
                     if (array[i, j] > max)
                     {
@@ -63,14 +63,14 @@ namespace CW5
             return max;
         }
 
-        static (int, int) Task3(ref int[,] array, int a, int b)
+        static (int, int) Task3(ref int[,] array)
         {
             int indexA = 0;
             int indexB = 0;
 
-            for (int i = 0; i < a; i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < b; j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
                     if (array[i, j] < array[indexA, indexB])
                     {
@@ -83,14 +83,14 @@ namespace CW5
             return (indexA, indexB);
         }
 
-        static (int, int) Task4(ref int[,] array, int a, int b)
+        static (int, int) Task4(ref int[,] array)
         {
             int indexA = 0;
             int indexB = 0;
 
-            for (int i = 0; i < a; i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < b; j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
                     if (array[i, j] > array[indexA, indexB])
                     {
@@ -103,29 +103,46 @@ namespace CW5
             return (indexA, indexB);
         }
 
-        static void Task5(ref int[,] array, int a, int b)
+        static int Task5(ref int[,] array)
         {
             int count = 0;
 
-            for (var i = 1; i < a; i++)
+            for (var i = 0; i < array.GetLength(0); i++)
             {
-                for (var j = 1; j < b; j++)
+                for (var j = 0; j < array.GetLength(1); j++)
                 {
-                    if ()
+                    if (i > 0 && array[i - 1, j] >= array[i, j])
                     {
-
+                        continue;
                     }
+
+                    if (j > 0 && array[i, j - 1] >= array[i, j])
+                    {
+                        continue;
+                    }
+
+                    if (i < array.GetLength(0) - 1 && array[i + 1, j] >= array[i, j])
+                    {
+                        continue;
+                    }
+
+                    if (j < array.GetLength(1) - 1 && (array[i, j + 1] >= array[i, j]))
+                    {
+                        continue;
+                    }
+
+                    ++count;
                 }
             }
 
-            Console.WriteLine(count);
+            return count;
         }
 
-        static int[,] Task6(ref int[,] array, int a, int b)
+        static int[,] Task6(ref int[,] array)
         {
-            for (var i = 0; i < a; i++)
+            for (var i = 0; i < array.GetLength(0); i++)
             {
-                for (var j = i + 1; j < b; j++)
+                for (var j = i + 1; j < array.GetLength(1); j++)
                 {
                     Swap(ref array[i, j], ref array[j, i]);
                 }
@@ -140,9 +157,9 @@ namespace CW5
             int b = 3;
             int[,] array = CreateArray(a, b);
 
-            for (int i = 0; i < a; i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < b; j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
                     Console.Write("{0}\t", array[i, j]);
                 }
@@ -152,13 +169,13 @@ namespace CW5
 
             Console.WriteLine();
 
-            Task1(ref array, a, b);
+            Task6(ref array);
 
-            for (int i = 0; i < a; i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < b; j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    Console.Write("\t", array[i, j]);
+                    Console.Write("{0}\t", array[i, j]);
                 }
 
                 Console.WriteLine();
