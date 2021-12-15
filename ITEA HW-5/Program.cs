@@ -27,83 +27,61 @@ namespace CW5
             b = temp;
         }
 
-        static int Task1(ref int[,] array)
+        static int MinValue(ref int[,] array)
         {
-            int min = array[0, 0];
+            (int minI, int minJ) = MinI(ref array);
+
+            return array[minI, minJ];
+        }
+
+        static int MaxValue(ref int[,] array)
+        {
+            (int maxI, int maxJ) = MaxI(ref array);
+
+            return array[maxI, maxJ];
+        }
+
+        static (int, int) MinI(ref int[,] array)
+        {
+            int indexI = 0;
+            int indexJ = 0;
 
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    if (array[i, j] < min)
+                    if (array[i, j] < array[indexI, indexJ])
                     {
-                        min = array[i, j];
+                        indexI = i;
+                        indexJ = j;
                     }
                 }
             }
 
-            return min;
+            return (indexI, indexJ);
         }
 
-        static int Task2(ref int[,] array)
+        static (int, int) MaxI(ref int[,] array)
         {
-            int max = array[0, 0];
+            int maxI = 0;
+            int maxJ = 0;
 
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    if (array[i, j] > max)
+                    if (array[i, j] > array[maxI, maxJ])
                     {
-                        max = array[i, j];
+                        maxI = i;
+                        maxJ = j;
                     }
                 }
             }
 
-            return max;
+            return (maxI, maxJ);
         }
 
-        static (int, int) Task3(ref int[,] array)
-        {
-            int indexA = 0;
-            int indexB = 0;
-
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    if (array[i, j] < array[indexA, indexB])
-                    {
-                        indexA = i;
-                        indexB = j;
-                    }
-                }
-            }
-
-            return (indexA, indexB);
-        }
-
-        static (int, int) Task4(ref int[,] array)
-        {
-            int indexA = 0;
-            int indexB = 0;
-
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    if (array[i, j] > array[indexA, indexB])
-                    {
-                        indexA = i;
-                        indexB = j;
-                    }
-                }
-            }
-
-            return (indexA, indexB);
-        }
-
-        static int Task5(ref int[,] array)
+        static int GreaterThanNeighborhood(ref int[,] array)
         {
             int count = 0;
 
@@ -138,7 +116,7 @@ namespace CW5
             return count;
         }
 
-        static int[,] Task6(ref int[,] array)
+        static int[,] ChangeAlongTheMainDiagonal(ref int[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -153,11 +131,7 @@ namespace CW5
 
         static void Main(string[] args)
         {
-            int a = 3;
-            int b = 3;
-            int[,] array = CreateArray(a, b);
 
-            Task6(ref array);
         }
     }
 }
